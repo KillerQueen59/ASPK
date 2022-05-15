@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/containerOnboardFragment">
+
+    <fragment
+        android:id="@+id/containerAuthFragment"
+        android:name="com.aspk.aspk.ui.auth.ContainerAuthFragment"
+        android:label="ContainerAuthFragment" >
+        <action
+            android:id="@+id/action_containerAuthFragment_to_containerHomeFragment"
+            app:destination="@id/containerHomeFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/containerAuthFragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/containerHomeFragment"
+        android:name="com.aspk.aspk.ui.home.ContainerHomeFragment"
+        android:label="ContainerHomeFragment" >
+        <action
+            android:id="@+id/action_containerHomeFragment_to_containerAuthFragment"
+            app:destination="@id/containerAuthFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/containerOnboardFragment"
+        android:name="com.aspk.aspk.ui.onboard.ContainerOnboardFragment"
+        android:label="ContainerOnboardFragment" >
+        <action
+            android:id="@+id/action_containerOnboardFragment_to_containerAuthFragment"
+            app:destination="@id/containerAuthFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/containerOnboardFragment"/>
+    </fragment>
+</navigation>

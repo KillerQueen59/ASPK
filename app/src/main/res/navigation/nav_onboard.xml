@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_onboard"
+    app:startDestination="@id/onboardFragment">
+
+    <fragment
+        android:id="@+id/onboardFragment"
+        android:name="com.aspk.aspk.ui.onboard.OnboardFragment"
+        android:label="OnboardFragment" >
+        <action
+            android:id="@+id/action_onboardFragment_to_onboard2Fragment2"
+            app:destination="@id/onboard2Fragment2"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/onboard2Fragment2"
+        android:name="com.aspk.aspk.ui.onboard.Onboard2Fragment"
+        android:label="Onboard2Fragment" >
+        <action
+            android:id="@+id/action_onboard2Fragment2_to_onboard3Fragment"
+            app:destination="@id/onboard3Fragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/onboard3Fragment"
+        android:name="com.aspk.aspk.ui.onboard.Onboard3Fragment"
+        android:label="Onboard3Fragment" />
+</navigation>
