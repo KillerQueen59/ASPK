@@ -11,6 +11,7 @@ import com.aspk.aspk.R
 import com.aspk.aspk.databinding.FragmentHomeBinding
 import com.aspk.aspk.ui.auth.JoinNowFragmentDirections
 import com.aspk.aspk.util.SessionManagement
+import splitties.toast.toast
 
 class HomeFragment: Fragment() {
 
@@ -32,6 +33,7 @@ class HomeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         sessionManagement = SessionManagement(requireActivity())
         binding.textView2.text = "Welcome, ${sessionManagement.name}"
+        handleClick()
     }
 
     private fun handleClick(){
@@ -39,11 +41,19 @@ class HomeFragment: Fragment() {
             menu.setOnClickListener {
                 goToMenu()
             }
+            analysis.setOnClickListener {
+                goToAnalysis()
+            }
         }
     }
 
     private fun goToMenu(){
         val direction = HomeFragmentDirections.actionHomeFragmentToMenuFragment()
+        homeAuthController?.navigate(direction)
+    }
+
+    private fun goToAnalysis(){
+        val direction = HomeFragmentDirections.actionHomeFragmentToAnalysisFragment()
         homeAuthController?.navigate(direction)
     }
 

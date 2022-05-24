@@ -10,10 +10,51 @@
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
+            app:destination="@id/menuFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right"
+            />
+        <action
+            android:id="@+id/action_homeFragment_to_analysisFragment"
+            app:destination="@id/analysisFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
         android:name="com.aspk.aspk.ui.home.menu.MenuFragment"
-        android:label="MenuFragment" />
+        android:label="MenuFragment" >
+        <action
+            android:id="@+id/action_menuFragment_to_promoFragment"
+            app:destination="@id/promoFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/promoFragment"
+        android:name="com.aspk.aspk.ui.home.menu.promo.PromoFragment"
+        android:label="PromoFragment" />
+    <fragment
+        android:id="@+id/analysisFragment"
+        android:name="com.aspk.aspk.ui.home.analysis.AnalysisFragment"
+        android:label="AnalysisFragment" >
+        <action
+            android:id="@+id/action_analysisFragment_to_graphFragment"
+            app:destination="@id/graphFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/graphFragment"
+        android:name="com.aspk.aspk.ui.home.analysis.GraphFragment"
+        android:label="GraphFragment" >
+
+        <argument
+            android:name="data"
+            app:argType="com.aspk.aspk.ui.home.analysis.MainData" />
+    </fragment>
 </navigation>

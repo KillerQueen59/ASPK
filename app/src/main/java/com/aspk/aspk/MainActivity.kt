@@ -27,6 +27,7 @@ import com.aspk.aspk.util.SessionManagement
             if (sessionManagement.isLoggedIn){
                 graph.setStartDestination(R.id.containerHomeFragment)
             } else {
+
                 graph.setStartDestination(R.id.containerAuthFragment)
             }
         }
