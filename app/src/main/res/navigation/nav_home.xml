@@ -35,6 +35,20 @@
             app:exitAnim="@anim/anim_slide_out_left"
             app:popEnterAnim="@anim/anim_slide_in_left"
             app:popExitAnim="@anim/anim_slide_out_right"/>
+        <action
+            android:id="@+id/action_menuFragment_to_foodFragment"
+            app:destination="@id/foodFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right"/>
+        <action
+            android:id="@+id/action_menuFragment_to_drinkFragment"
+            app:destination="@id/drinkFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/promoFragment"
@@ -46,7 +60,11 @@
         android:label="AnalysisFragment" >
         <action
             android:id="@+id/action_analysisFragment_to_graphFragment"
-            app:destination="@id/graphFragment" />
+            app:destination="@id/graphFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/graphFragment"
@@ -56,5 +74,45 @@
         <argument
             android:name="data"
             app:argType="com.aspk.aspk.ui.home.analysis.MainData" />
+    </fragment>
+    <fragment
+        android:id="@+id/foodFragment"
+        android:name="com.aspk.aspk.ui.home.menu.food.FoodFragment"
+        android:label="FoodFragment" >
+        <action
+            android:id="@+id/action_foodFragment_to_detailFoodFragment2"
+            app:destination="@id/detailFoodFragment2"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/detailFoodFragment2"
+        android:name="com.aspk.aspk.ui.home.menu.food.DetailFoodFragment"
+        android:label="DetailFoodFragment" >
+        <argument
+            android:name="data"
+            app:argType="com.aspk.aspk.data.local.model.FoodEntity" />
+    </fragment>
+    <fragment
+        android:id="@+id/drinkFragment"
+        android:name="com.aspk.aspk.ui.home.menu.food.DrinkFragment"
+        android:label="DrinkFragment" >
+        <action
+            android:id="@+id/action_drinkFragment_to_detailDrinkFragment"
+            app:destination="@id/detailDrinkFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/detailDrinkFragment"
+        android:name="com.aspk.aspk.ui.home.menu.food.DetailDrinkFragment"
+        android:label="DetailDrinkFragment" >
+        <argument
+            android:name="data"
+            app:argType="com.aspk.aspk.data.local.model.FoodEntity" />
     </fragment>
 </navigation>

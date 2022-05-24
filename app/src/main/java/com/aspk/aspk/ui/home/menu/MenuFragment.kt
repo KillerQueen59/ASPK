@@ -34,6 +34,12 @@ class MenuFragment: Fragment() {
             btnPromo.setOnClickListener {
                 goToPromo()
             }
+            btnMakanan.setOnClickListener {
+                goToFood()
+            }
+            btnMinuman.setOnClickListener {
+                goToDrink()
+            }
         }
     }
 
@@ -43,12 +49,12 @@ class MenuFragment: Fragment() {
     }
 
     private fun goToFood(){
-        val direction = MenuFragmentDirections.actionMenuFragmentToPromoFragment()
+        val direction = MenuFragmentDirections.actionMenuFragmentToFoodFragment()
         homeAuthController?.navigate(direction)
     }
 
     private fun goToDrink(){
-        val direction = MenuFragmentDirections.actionMenuFragmentToPromoFragment()
+        val direction = MenuFragmentDirections.actionMenuFragmentToDrinkFragment()
         homeAuthController?.navigate(direction)
     }
 }

@@ -1,41 +1,35 @@
 package com.aspk.aspk.ui.home.menu.food
 
-
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aspk.aspk.R
 import com.aspk.aspk.data.local.model.FoodEntity
-import com.aspk.aspk.data.local.model.UserEntity
 import com.aspk.aspk.data.local.room.FoodDatabase
-import com.aspk.aspk.data.local.room.UserDatabase
 import com.aspk.aspk.databinding.FragmentFoodBinding
-import com.aspk.aspk.ui.home.menu.MenuFragmentDirections
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import splitties.toast.toast
 
-class FoodFragment: Fragment() {
+class DrinkFragment: Fragment() {
 
     lateinit var binding: FragmentFoodBinding
     lateinit var  data : List<FoodEntity>
-    lateinit var  items : List<FoodEntity>
     private lateinit var database: FoodDatabase
-    lateinit var adapterFood: FoodAdapter
+    private val compositeDisposable = CompositeDisposable()
+    lateinit var adapterDrink: FoodAdapter
     private val homeAuthController: NavController? by lazy { activity?.findNavController(R.id.fcv_home) }
+    lateinit var  items : List<FoodEntity>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,7 +46,6 @@ class FoodFragment: Fragment() {
         setupRecycler()
         getAllFood()
         getCurrentFood()
-
     }
 
     private fun getCurrentFood(){
@@ -83,7 +76,7 @@ class FoodFragment: Fragment() {
 
     private fun getAllFood(){
         GlobalScope.launch {
-            data = database.foodDao().getAllFood().filter { !it.drink }
+            data = database.foodDao().getAllFood().filter { it.drink }
             Log.d("ojanojan allfood",data.toString())
             val array = arrayListOf<FoodEntity>()
             array.addAll(data)
@@ -92,23 +85,23 @@ class FoodFragment: Fragment() {
     }
 
     private fun setupRecycler() {
-        adapterFood = FoodAdapter (onItemClick = {
+        adapterDrink = FoodAdapter (onItemClick = {
             goToDetail(it)
         })
         with(binding.rvFood){
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
-            adapter = adapterFood
+            adapter = adapterDrink
         }
     }
 
     private fun setRecyclerView(food: ArrayList<FoodEntity>){
-        adapterFood.setTask(food)
-        adapterFood.notifyDataSetChanged()
+        adapterDrink.setTask(food)
+        adapterDrink.notifyDataSetChanged()
     }
 
     private fun goToDetail(data: FoodEntity){
-        val direction = FoodFragmentDirections.actionFoodFragmentToDetailFoodFragment2(data)
+        val direction = DrinkFragmentDirections.actionDrinkFragmentToDetailDrinkFragment(data)
         homeAuthController?.navigate(direction)
     }
 
