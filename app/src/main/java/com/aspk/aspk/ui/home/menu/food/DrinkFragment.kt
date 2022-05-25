@@ -46,12 +46,16 @@ class DrinkFragment: Fragment() {
         setupRecycler()
         getAllFood()
         getCurrentFood()
+        with(binding){
+            cvCart.setOnClickListener {
+                goToCart()
+            }
+        }
     }
 
     private fun getCurrentFood(){
         GlobalScope.launch {
             items = database.foodDao().getAllFood().filter { it.cart }
-            Log.d("ojanojan",items.toString())
             with(binding) {
                 if (items.size != 0) {
                     totalItem.text = "${items.size} items"
@@ -69,7 +73,7 @@ class DrinkFragment: Fragment() {
                     totalPrice.text = "Rp. $price"
                 }
             }
-            if (items.isEmpty()) binding.cvCart.visibility = View.INVISIBLE
+            if (items.isEmpty()) binding.cvCart.visibility = View.GONE
             else binding.cvCart.visibility = View.VISIBLE
         }
     }
@@ -77,7 +81,6 @@ class DrinkFragment: Fragment() {
     private fun getAllFood(){
         GlobalScope.launch {
             data = database.foodDao().getAllFood().filter { it.drink }
-            Log.d("ojanojan allfood",data.toString())
             val array = arrayListOf<FoodEntity>()
             array.addAll(data)
             setRecyclerView(array)
@@ -101,7 +104,12 @@ class DrinkFragment: Fragment() {
     }
 
     private fun goToDetail(data: FoodEntity){
-        val direction = DrinkFragmentDirections.actionDrinkFragmentToDetailDrinkFragment(data)
+        val direction = DrinkFragmentDirections.actionDrinkFragmentToDetailDrinkFragment(data,"food")
+        homeAuthController?.navigate(direction)
+    }
+
+    private fun goToCart(){
+        val direction = DrinkFragmentDirections.actionDrinkFragmentToCartFragment()
         homeAuthController?.navigate(direction)
     }
 

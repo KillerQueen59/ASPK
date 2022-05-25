@@ -79,7 +79,6 @@ class HomeFragment: Fragment() {
                 with(binding){
                 }
             },{
-                Log.d("ojanojan",it.toString())
             }))
     }
 

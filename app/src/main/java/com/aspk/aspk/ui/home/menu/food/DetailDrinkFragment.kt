@@ -89,6 +89,10 @@ class DetailDrinkFragment: Fragment() {
                     rbIce.isChecked = false
                 }
             }
+
+            if (args.from == "cart"){
+                addToCart.text = "Ubah"
+            }
         }
     }
 

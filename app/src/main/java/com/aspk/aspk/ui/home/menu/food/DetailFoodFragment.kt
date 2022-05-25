@@ -75,7 +75,6 @@ class DetailFoodFragment: Fragment() {
                 .into(imageFood)
             if (args.data.note != "") etNotes.setText(args.data.note)
             if (args.data.qty != 0) item.text = args.data.qty.toString()
-            Log.d("ojanojan",args.data.avalableIn)
             when(args.data.avalableIn){
                 "Small" -> rbSmall.isChecked = true
                 "Normal" -> rbNormal.isChecked = true
@@ -88,6 +87,9 @@ class DetailFoodFragment: Fragment() {
             }
             item.text = quantity.toString()
 
+            if (args.from == "cart"){
+                addButton.text = "Ubah"
+            }
 
         }
     }

@@ -1,25 +1,27 @@
-package com.aspk.aspk.ui.home.menu.food
+package com.aspk.aspk.ui.home.menu.promo
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aspk.aspk.data.local.model.FoodEntity
+import com.aspk.aspk.data.local.model.PromoModel
 import com.aspk.aspk.databinding.ItemFoodBinding
+import com.aspk.aspk.databinding.ItemPromoBinding
+import com.aspk.aspk.ui.home.menu.food.FoodAdapter
 import com.bumptech.glide.Glide
 
-class FoodAdapter(private val onItemClick: (food: FoodEntity) -> Unit) : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
-    private var listFood = ArrayList<FoodEntity>()
+class PromoAdapter (private val onItemClick: (food: PromoModel) -> Unit) : RecyclerView.Adapter<PromoAdapter.FoodViewHolder>() {
+    private var listFood = ArrayList<PromoModel>()
 
-    fun setTask(food: ArrayList<FoodEntity>?) {
+    fun setTask(food: ArrayList<PromoModel>?) {
         if (food == null) return
         this.listFood.clear()
         this.listFood.addAll(food)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
-        val binding = ItemFoodBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemPromoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FoodViewHolder(binding, parent.context)
     }
 
@@ -36,17 +38,15 @@ class FoodAdapter(private val onItemClick: (food: FoodEntity) -> Unit) : Recycle
     }
 
 
-    class FoodViewHolder(private val binding: ItemFoodBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(food: FoodEntity) {
+    class FoodViewHolder(private val binding: ItemPromoBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(food: PromoModel) {
             with(binding) {
-                titleFood.text = food.name ?: ""
-                ingredientFood.text = food.desc ?: ""
                 Glide.with(context)
                     .load(food.image)
-                    .into(imageFood)
-                priceFood.text = food.price.toString() ?: ""
-
+                    .into(imagePromo)
             }
         }
+
+
     }
 }

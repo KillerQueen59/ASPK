@@ -1,15 +1,16 @@
-package com.aspk.aspk.ui.home.menu.food
+package com.aspk.aspk.ui.home.menu.cart
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aspk.aspk.data.local.model.FoodEntity
+import com.aspk.aspk.databinding.ItemCartBinding
 import com.aspk.aspk.databinding.ItemFoodBinding
+import com.aspk.aspk.ui.home.menu.food.FoodAdapter
 import com.bumptech.glide.Glide
 
-class FoodAdapter(private val onItemClick: (food: FoodEntity) -> Unit) : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
+class CartAdapter (private val onItemClick: (food: FoodEntity) -> Unit) : RecyclerView.Adapter<CartAdapter.FoodViewHolder>() {
     private var listFood = ArrayList<FoodEntity>()
 
     fun setTask(food: ArrayList<FoodEntity>?) {
@@ -19,7 +20,7 @@ class FoodAdapter(private val onItemClick: (food: FoodEntity) -> Unit) : Recycle
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
-        val binding = ItemFoodBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemCartBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FoodViewHolder(binding, parent.context)
     }
 
@@ -36,17 +37,17 @@ class FoodAdapter(private val onItemClick: (food: FoodEntity) -> Unit) : Recycle
     }
 
 
-    class FoodViewHolder(private val binding: ItemFoodBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root) {
+    class FoodViewHolder(private val binding: ItemCartBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root) {
         fun bind(food: FoodEntity) {
             with(binding) {
-                titleFood.text = food.name ?: ""
-                ingredientFood.text = food.desc ?: ""
-                Glide.with(context)
-                    .load(food.image)
-                    .into(imageFood)
-                priceFood.text = food.price.toString() ?: ""
+                name.text = food.name ?: ""
+                description.text = food.desc ?: ""
+                price.text = (food.price * food.qty).toString() ?: ""
+                qty.text = food.qty.toString() + "x"
 
             }
         }
+
+
     }
 }

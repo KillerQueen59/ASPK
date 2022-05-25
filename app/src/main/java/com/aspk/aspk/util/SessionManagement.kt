@@ -14,6 +14,8 @@ class SessionManagement(var context: Context) {
         val KEY_ID = "id"
         val KEY_EMAIL = "email"
         val KEY_NAME = "name"
+        val KEY_PROMO = "promo"
+        val KEY_PROMO_NAME = "promoName"
 
     }
 
@@ -35,13 +37,31 @@ class SessionManagement(var context: Context) {
         get() = pref.getBoolean(IS_FIRST,true)
 
     val name: String
-        get() = pref.getString(KEY_NAME,"").toString()
+        get() = pref.getString(KEY_NAME,"")!!
+
+    val promo: Float
+        get() = pref.getFloat(KEY_PROMO,0f)
+
+    val promoName: String
+        get() = pref.getString(KEY_PROMO_NAME,"").toString()
 
 
     fun createAuth(email: String,name: String){
         editor.putString(KEY_NAME, name)
         editor.putString(KEY_EMAIL, email)
         editor.putBoolean(IS_LOGIN, true)
+        editor.commit()
+    }
+
+    fun applyPromo(promo: Float,promoName: String){
+        editor.putFloat(KEY_PROMO, promo)
+        editor.putString(KEY_PROMO_NAME, promoName)
+        editor.commit()
+    }
+
+    fun clearPromo(){
+        editor.remove(KEY_PROMO)
+        editor.remove(KEY_PROMO_NAME)
         editor.commit()
     }
 
